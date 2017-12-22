@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import entities.Customer;
 import entities.FullMembership;
+import entities.Reservation;
 import entities.PartialMembership;
 
 public class RequestsSender
@@ -61,5 +62,16 @@ public class RequestsSender
     public static ServerResponse<Customer> GetCustomer(String customerId)
     {
 	return SendRequest(customerId, ClientServerConsts.GetCustomer);
+    }
+    
+    public static ServerResponse<Reservation> Reservation(Reservation reservation)
+    {
+	return SendRequest(reservation, ClientServerConsts.Reservation);
+    }
+    
+    public static ServerResponse<Reservation> GetReservation(String orderId)
+    {
+	return SendRequest(orderId, ClientServerConsts.GetReservation);
     } 
+    
 }
