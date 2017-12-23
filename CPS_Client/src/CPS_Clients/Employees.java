@@ -23,6 +23,7 @@ public class Employees extends Application
 	    list.add(new Pair<String, URL>(ConstsEmployees.ParkingLotWorkerEntery, myClass.getResource(ConstsEmployees.ParkingLotWorkerEnteryFxmlPath)));
 	    list.add(new Pair<String, URL>(ConstsEmployees.ManagerLogin, myClass.getResource(ConstsEmployees.ManagerLoginFxmlPath)));
 	    list.add(new Pair<String, URL>(ConstsEmployees.CustomerServiceEntery, myClass.getResource(ConstsEmployees.CustomerServiceEnteryFxmlPath)));
+	   // list.add(new Pair<String, URL>(ConstsEmployees.CeoLogin, myClass.getResource(ConstsEmployees.CeoLoginFxmlPath)));
 	    
 	    ControllersManager controllersManager = new ControllersManager(list, primaryStage,ConstsEmployees.EmployeesLogin);
 	    

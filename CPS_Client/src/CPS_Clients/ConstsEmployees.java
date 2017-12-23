@@ -13,6 +13,8 @@ public class ConstsEmployees {
 	 public static final String ParkingLotWasinitialized = "Parking Lot Was initialized";
 	 public static final String ManagerLogin="Manager Login";
 	 public static final String ManagerLoginFxmlPath="Fxmls/ManagerLogin.fxml";
+	 public static final String CeoLoginFxmlPath="Fxmls/CeoLogin.fxml";
+	 public static final String CeoLogin="Ceo Login";
 	 public static final String CustomerServiceEnteryFxmlPath="Fxmls/CustomerServiceEntery.fxml";
 	 public static final String CustomerServiceEntery="Customer Service Entery";
 }
