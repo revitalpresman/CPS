@@ -1,7 +1,8 @@
 package clientServerCPS;
 
-import java.awt.List;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -9,17 +10,24 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import CPS_Utilities.CloseComplaintRequest;
+import CPS_Utilities.Consts;
+import CPS_Utilities.DialogBuilder;
+import CPS_Utilities.GuestIdentifyingInformation;
 import CPS_Utilities.LoginIdentification;
+import entities.ChangeRatesRequest;
+import entities.ChangeRatesResponse;
 import entities.Complaint;
 import entities.Customer;
 import entities.Employee;
 import entities.FullMembership;
 import entities.Parkinglot;
-import entities.Reservation;
-import entities.enums.ParkinglotStatus;
 import entities.PartialMembership;
+import entities.Reservation;
+import javafx.scene.control.Dialog;
 
 public class RequestsSender
 {
@@ -27,7 +35,23 @@ public class RequestsSender
     
     public RequestsSender() throws IOException, URISyntaxException
     {
-	serverIP = new String(Files.readAllBytes(Paths.get(getClass().getResource("ServerIP.txt").toURI())));
+	ArrayList<String> ip = new ArrayList<>();
+	
+	ip.add("ip:");
+	
+	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, ip, Consts.Submit);
+	
+	Optional<List<String>> result = dialog.showAndWait();
+	
+	result.ifPresent(inputs ->
+	{
+	    serverIP = inputs.get(0);
+	});
+    }
+    
+    public RequestsSender(String ip) 
+    {
+	serverIP = ip;
     }
     
     @SuppressWarnings("unchecked")
@@ -122,5 +146,20 @@ public class RequestsSender
     public static ServerResponse<CloseComplaintRequest> CloseComplaint(CloseComplaintRequest closeComplaintRequest)
     {
 	return SendRequest(closeComplaintRequest, ClientServerConsts.CloseComplaint);
+    }
+    
+    public static ServerResponse<ChangeRatesRequest> AddChangeRatesRequest(ChangeRatesRequest changeRatesRequest)
+    {
+	return SendRequest(changeRatesRequest, ClientServerConsts.AddChangeRatesRequest);
+    }
+    
+    public static ServerResponse<ChangeRatesResponse> CloseChangeRatesRequest(ChangeRatesResponse changeRatesResponse)
+    {
+	return SendRequest(changeRatesResponse, ClientServerConsts.CloseChangeRatesRequest);
+    }
+    
+    public static ServerResponse<ArrayList<ChangeRatesRequest>> GetAllChangeRatesRequests()
+    {
+	return SendRequest(null, ClientServerConsts.GetAllChangeRatesRequests);
     }
 }
