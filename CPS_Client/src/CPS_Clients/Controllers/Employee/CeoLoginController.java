@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Alert.AlertType;
 
-public class CeoLoginController extends BaseController{
+public class CeoLoginController extends EmployeeBaseController{
 	private ArrayList<String> DisableParkingSpotInputs = new ArrayList<>();
 	public CeoLoginController()
 	{
@@ -80,7 +80,7 @@ public class CeoLoginController extends BaseController{
     @FXML
     void OnBack(ActionEvent event) 
     {
-    	myControllersManager.Back(PreviousScene,ConstsEmployees.ManagerLogin );
+    	myControllersManager.Back(PreviousScene,ConstsEmployees.CeoLogin );
     }
 
 }

@@ -5,12 +5,12 @@ import CPS_Clients.Controllers.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class CustomerServiceEnteryController  extends BaseController{
+public class CustomerServiceEnteryController  extends EmployeeBaseController{
 
     @FXML
     void OnManageComplaints(ActionEvent event) 
     {
-
+    	myControllersManager.SetScene(ConstsEmployees.RateChange, ConstsEmployees.CustomerServiceEntery);
     }
 
     @FXML

@@ -12,12 +12,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Alert.AlertType;
 
-public class ManagerLoginController extends BaseController{
+public class ManagerLoginController extends EmployeeBaseController{
 	private ArrayList<String> DisableParkingSpotInputs = new ArrayList<>();
+	private ArrayList<String> RequestUpdatePricesInputs = new ArrayList<>();
 	public ManagerLoginController()
 	{
 		super();
 		DisableParkingSpotInputs.add("Parking Spot Number:");
+		RequestUpdatePricesInputs.add("New guest rate:");
+		RequestUpdatePricesInputs.add("New in advance rate:");
 	}
 	
     @FXML
@@ -65,10 +68,16 @@ public class ManagerLoginController extends BaseController{
     }
 
     @FXML
-    void OnUpdatePrices(ActionEvent event) 
+    void OnRequestUpdatePrices(ActionEvent event) 
     {
-    	
-
+    	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, RequestUpdatePricesInputs, Consts.Submit);
+    	Optional<List<String>> result = dialog.showAndWait();
+    	result.ifPresent(inputs->
+    	{
+    	//send new prices to DB
+    			
+    		DialogBuilder.AlertDialog(AlertType.INFORMATION, "", ConstsEmployees.RequestSent, null,false);		
+    	});
     }
 
     @FXML
