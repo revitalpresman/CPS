@@ -29,4 +29,11 @@ public class ConstsEmployees {
 	 public static final String ReservationSubmitted = "Reservation has been made";
 	 public static final String ReserveParkingSpot = "Reserve Parking Spot";
 	 public static final String ReserveParkingSpotFxmlPath = "Fxmls/ReserveParkingSpot.fxml";
+	 public static final String ErrorPleaseTryAgainLater = "Error Please Try Again Later";
+	 public static final String ConfirmParkingLotUnDisabled =  "Are you sure you want to inable this parking lot?";
+	 public static final String ParkingLotIsInabled = "Parking lot was inabled";
+	 public static final String AlreadyDisabled = "Parking lot Was Already Disabled";
+     public static final String Alreadyinabled = "Parking lot was already inabled";
+     public static final String ParkingLotIsDisabled = "Sorry, Parking Lot is disabled, please inable it and try again";    
+	    
 }

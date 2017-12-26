@@ -75,7 +75,7 @@ public class ManagerLoginController extends EmployeeBaseController{
     void OnReserveParkingSpot(ActionEvent event) 
     {
     	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, DisableParkingSpotInputs, Consts.Submit);
-    	Optional<List<String>> result = dialog.showAndWait();
+    	//Optional<List<String>> result = dialog.showAndWait();
 		/////////////////check if submit was clicked
 		{
 		//save in DB
@@ -87,7 +87,7 @@ public class ManagerLoginController extends EmployeeBaseController{
     void OnDisabeledParkingLot(ActionEvent event) 
     {
     	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, DisableParkingSpotInputs, Consts.Submit);
-    	Optional<List<String>> result = dialog.showAndWait();
+    	//Optional<List<String>> result = dialog.showAndWait();
     	/////////////////check if submit was clicked
     	{
     	//save in DB
@@ -116,6 +116,16 @@ public class ManagerLoginController extends EmployeeBaseController{
     void OnProduceReport(ActionEvent event) 
     {
 
+    }
+    @FXML
+    void OnUndisableParkingLot(ActionEvent event)
+    {
+    	
+    }
+    @FXML
+    void OnUndisableParkingSpot(ActionEvent event)
+    {
+    	
     }
 
     @FXML

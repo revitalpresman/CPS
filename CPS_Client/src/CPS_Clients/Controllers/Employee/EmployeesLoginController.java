@@ -37,6 +37,9 @@ public class EmployeesLoginController extends EmployeeBaseController {
     	  	
     	  	if (employeeRes.GetRequestResult().equals(RequestResult.WrongCredentials))
     			DialogBuilder.AlertDialog(AlertType.ERROR, null, ConstsEmployees.IncorrectUsernameOrPassword, null, false);
+    	  	//if (employeeRes.GetRequestResult().equals(RequestResult.Failed )|| employeeRes.GetRequestResult().equals(RequestResult.NotFound)) {
+    	  		//DialogBuilder.AlertDialog(AlertType.ERROR, null, ConstsEmployees.ErrorPleaseTryAgainLater, null, false);
+			//}
     	  	else 
     	  	{
     	  		MyEmployee=employeeRes.GetResponseObject();

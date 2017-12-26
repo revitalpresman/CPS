@@ -2,10 +2,7 @@ package CPS_Clients.Controllers.Employee;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.function.Consumer;
-
 import CPS_Clients.ConstsEmployees;
-import CPS_Clients.ConstsWeb;
 import CPS_Utilities.Consts;
 import CPS_Utilities.DialogBuilder;
 import CPS_Utilities.InputValidator;
@@ -70,6 +67,13 @@ public class ReserveParkingSpotController extends EmployeeBaseController
 		{
 		    return;
 		}
+		
+			customer = new Customer(customerId.getText(), email.getText(), 0);
+			reservation = new Reservation(ReservationType.Employee, customerId.getText(), parkingLot.getText(),
+					carNumber.getText(), arrivalDate.getValue(), leavingDate.getValue(),
+					LocalTime.parse(arrivalHour.getText()), LocalTime.parse(leavingHour.getText()),
+					ReservationStatus.NotStarted);
+		
 		    ServerResponse<Reservation> OrderInAdvanceResponse = RequestsSender.Reservation(reservation);
 		    ServerResponse<Customer> AddCustomerIfNotExist = RequestsSender.AddCustomerIfNotExists(customer);
 		    
@@ -82,17 +86,19 @@ public class ReserveParkingSpotController extends EmployeeBaseController
 		    
 		    DialogBuilder.AlertDialog(AlertType.INFORMATION, Consts.Approved, ConstsEmployees.ReservationSubmitted, null,
 			    false);
+		    myControllersManager.Back(PreviousScene, ConstsEmployees.ReserveParkingSpot);
 		    
     }
     
     @FXML
     void OnBack(ActionEvent event)
     {
-	myControllersManager.Back(PreviousScene, ConstsWeb.OrderInAdvance);
+	myControllersManager.Back(PreviousScene, ConstsEmployees.ReserveParkingSpot);
     }
-    
+   
     private boolean TryConstructOrderInAdvance()
     {
+    	
 	customer = new Customer(customerId.getText(), email.getText(), 0);
 	
 	if (!InputValidator.OrderInAdvance(carNumber.getText(), arrivalDate.getValue(), leavingDate.getValue(),
@@ -103,7 +109,7 @@ public class ReserveParkingSpotController extends EmployeeBaseController
 	    return false;
 	}
 	
-	reservation = new Reservation(ReservationType.InAdvance, customerId.getText(), parkingLot.getText(),
+	reservation = new Reservation(ReservationType.Employee, customerId.getText(), parkingLot.getText(),
 		carNumber.getText(), arrivalDate.getValue(), leavingDate.getValue(),
 		LocalTime.parse(arrivalHour.getText()), LocalTime.parse(leavingHour.getText()),
 		ReservationStatus.NotStarted);
