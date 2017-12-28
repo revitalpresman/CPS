@@ -48,9 +48,10 @@ public class CeoLoginController extends EmployeeBaseController{
     	result.ifPresent(inputs->
 	    {
 	    	String parkinglotName=inputs.get(0);
+	    	//parkinglotName= parkinglotName.toLowerCase();
 	    	String s_width=inputs.get(1);
 	    	int width=Integer.parseInt(s_width);
-	    	boolean IsValid= Pattern.matches("[0-9]+",inputs.get(0)) && 4 <= Integer.parseInt(inputs.get(0)) && Integer.parseInt(inputs.get(0))<=8 ;
+	    	boolean IsValid= Pattern.matches("[0-9]+",inputs.get(1)) && 4 <= Integer.parseInt(inputs.get(1)) && Integer.parseInt(inputs.get(1))<=8 ;
 	    	if (IsValid) 
 	    	{
 				Parkinglot parkinglot=new Parkinglot(parkinglotName, width, ParkinglotStatus.Open, 5, 4);
@@ -76,6 +77,7 @@ public class CeoLoginController extends EmployeeBaseController{
     	result.ifPresent(inputs->
 	    {
     		String parkinglotName=inputs.get(0);
+    		//parkinglotName= parkinglotName.toLowerCase();
     		ServerResponse<Parkinglot>ParkinglotRes= RequestsSender.GetParkinglot(parkinglotName);
     		if(!ParkinglotRes.GetRequestResult().equals(RequestResult.NotFound))
     		{
@@ -107,7 +109,7 @@ public class CeoLoginController extends EmployeeBaseController{
     @FXML
     void OnReserveParkingSpot(ActionEvent event) 
     {
-    	myControllersManager.SetScene(ConstsEmployees.ReserveParkingSpot, ConstsEmployees.ParkingLotWorkerEntery);
+    	myControllersManager.SetScene(ConstsEmployees.ReserveParkingSpot, ConstsEmployees.CeoLogin);
     }
 
     @FXML
@@ -118,6 +120,7 @@ public class CeoLoginController extends EmployeeBaseController{
     	result.ifPresent(inputs->
     	{
     		String parkinglotName=inputs.get(3);
+    		//parkinglotName= parkinglotName.toLowerCase();
     		ServerResponse<Parkinglot>ParkinglotRes= RequestsSender.GetParkinglot(parkinglotName);
     		if(!ParkinglotRes.GetRequestResult().equals(RequestResult.NotFound))
 	    	{
@@ -127,9 +130,9 @@ public class CeoLoginController extends EmployeeBaseController{
 		    		DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.ParkingLotIsDisabled, null,false);
 	    		else 
 	    		{
-	    			boolean temp1= Pattern.matches("[0-9]+", inputs.get(0)) && parkinglot.getWidth() > Integer.parseInt(inputs.get(0)) && 0<Integer.parseInt(inputs.get(0));
-	    			boolean temp2= Pattern.matches("[0-9]+", inputs.get(1)) && parkinglot.getHeight() > Integer.parseInt(inputs.get(1)) && 0<Integer.parseInt(inputs.get(1));
-	    			boolean temp3= Pattern.matches("[0-9]+", inputs.get(2)) && parkinglot.getDepth() > Integer.parseInt(inputs.get(2)) && 0<Integer.parseInt(inputs.get(2));
+	    			boolean temp1= Pattern.matches("[0-9]+", inputs.get(0)) && parkinglot.getWidth() >= Integer.parseInt(inputs.get(0)) && 0<Integer.parseInt(inputs.get(0));
+	    			boolean temp2= Pattern.matches("[0-9]+", inputs.get(1)) && parkinglot.getHeight() >= Integer.parseInt(inputs.get(1)) && 0<Integer.parseInt(inputs.get(1));
+	    			boolean temp3= Pattern.matches("[0-9]+", inputs.get(2)) && parkinglot.getDepth() >= Integer.parseInt(inputs.get(2)) && 0<Integer.parseInt(inputs.get(2));
 	    			if (temp1 && temp2 && temp3) 
 	    			{
 		    			ParkingSpot parkingspot= new ParkingSpot(Integer.parseInt(inputs.get(0)),Integer.parseInt(inputs.get(1)),Integer.parseInt(inputs.get(2)));
@@ -138,9 +141,8 @@ public class CeoLoginController extends EmployeeBaseController{
 			    		ServerResponse<ChangeParkingSpotStatusRequest> ChangeParkingSpotStatusRes= RequestsSender.ChangeParkingSpotStatus(changeParkingSpotStatusRequest);
 			    		if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.Succeed))
 			    			DialogBuilder.AlertDialog(AlertType.INFORMATION, "", ConstsEmployees.ParkingSpotDisabled, null,false);
-	///////////////////////////////// check in another way
-			    		/*else if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.notfound)
-			    			DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.ParkingSpotAlreadyDisabled, null,false);*/
+			    		else if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.NotFound))
+			    			DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.ParkingSpotAlreadyDisabled, null,false);
 			    		else DialogBuilder.AlertDialog(AlertType.ERROR, "", Consts.ServerProblemMessage, null,false);
 	
 	    			}
@@ -171,6 +173,7 @@ public class CeoLoginController extends EmployeeBaseController{
     	result.ifPresent(inputs->
 	    {
     		String parkinglotName=inputs.get(0);
+    		//parkinglotName= parkinglotName.toLowerCase();
     		ServerResponse<Parkinglot>ParkinglotRes= RequestsSender.GetParkinglot(parkinglotName);
     		if(!ParkinglotRes.GetRequestResult().equals(RequestResult.NotFound))
     		{
@@ -205,6 +208,7 @@ public class CeoLoginController extends EmployeeBaseController{
     	result.ifPresent(inputs->
     	{
     		String parkinglotName=inputs.get(3);
+    		//parkinglotName= parkinglotName.toLowerCase();
     		ServerResponse<Parkinglot>ParkinglotRes= RequestsSender.GetParkinglot(parkinglotName);
     		if(!ParkinglotRes.GetRequestResult().equals(RequestResult.NotFound))
 	    	{
@@ -215,9 +219,9 @@ public class CeoLoginController extends EmployeeBaseController{
 	    		else 
 	    		{
 	
-	    			boolean temp1= Pattern.matches("[0-9]+", inputs.get(0)) && parkinglot.getWidth() > Integer.parseInt(inputs.get(0)) && 0<Integer.parseInt(inputs.get(0));
-	    			boolean temp2= Pattern.matches("[0-9]+", inputs.get(1)) && parkinglot.getHeight() > Integer.parseInt(inputs.get(1)) && 0<Integer.parseInt(inputs.get(1));
-	    			boolean temp3= Pattern.matches("[0-9]+", inputs.get(2)) && parkinglot.getDepth() > Integer.parseInt(inputs.get(2)) && 0<Integer.parseInt(inputs.get(2));
+	    			boolean temp1= Pattern.matches("[0-9]+", inputs.get(0)) && parkinglot.getWidth() >= Integer.parseInt(inputs.get(0)) && 0<Integer.parseInt(inputs.get(0));
+	    			boolean temp2= Pattern.matches("[0-9]+", inputs.get(1)) && parkinglot.getHeight() >= Integer.parseInt(inputs.get(1)) && 0<Integer.parseInt(inputs.get(1));
+	    			boolean temp3= Pattern.matches("[0-9]+", inputs.get(2)) && parkinglot.getDepth() >= Integer.parseInt(inputs.get(2)) && 0<Integer.parseInt(inputs.get(2));
 	    			if (temp1 && temp2 && temp3) 
 	    			{
 		    			ParkingSpot parkingspot= new ParkingSpot(Integer.parseInt(inputs.get(0)),Integer.parseInt(inputs.get(1)),Integer.parseInt(inputs.get(2)));
@@ -225,9 +229,8 @@ public class CeoLoginController extends EmployeeBaseController{
 		        		ServerResponse<ChangeParkingSpotStatusRequest> ChangeParkingSpotStatusRes= RequestsSender.ChangeParkingSpotStatus(changeParkingSpotStatusRequest);
 		        		if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.Succeed))
 		        			DialogBuilder.AlertDialog(AlertType.INFORMATION, "", ConstsEmployees.parkingSpotInabled, null,false);
-	///////////////////////////////// check in another way if parking spot already enabled 
-		        		/*else if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.Alredy)
-						DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.ParkingSpotAlreadyEnabled, null,false);*/
+		        		else if(ChangeParkingSpotStatusRes.GetRequestResult().equals(RequestResult.NotFound))
+						DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.ParkingSpotAlreadyEnabled, null,false);
 		        		else DialogBuilder.AlertDialog(AlertType.ERROR, "", Consts.ServerProblemMessage, null,false);
 	    			}
 	        		else DialogBuilder.AlertDialog(AlertType.ERROR, "", ConstsEmployees.FieldWrong, null,false);
