@@ -16,7 +16,7 @@ public class ProduceReportController extends EmployeeBaseController
     @FXML
     void OnComaplaintsReport(ActionEvent event) 
     {
-
+    	myControllersManager.SetScene(ConstsEmployees.Table,ConstsEmployees.ProduceReport);
     }
 
     @FXML

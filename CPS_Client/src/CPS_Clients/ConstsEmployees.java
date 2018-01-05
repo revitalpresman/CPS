@@ -44,5 +44,7 @@ public class ConstsEmployees {
 	 public static final String ReserveParkingSpotInLocalParkingLotFxmlPath = "Fxmls/ReserveParkingSpotInLocalParkingLot.fxml";
 	 public static final String ProduceReport = "Produce Report";
 	 public static final String ProduceReportFxmlPath = "Fxmls/ProduceReport.fxml";
+	public static final String Table= "Table";
+	public static final String TableFxmlPath = "Fxmls/Table.fxml";
 	    
 }
