@@ -40,8 +40,19 @@ public class ConstsEmployees {
    	 public static final String ParkingSpotAlreadyEnabled = "Parking spot was already enabled"; 
    	 public static final String ParkingSpotAlreadyDisabled = "Parking spot was already disabled";
 	 public static final String ParkingLotNotFound = "Parking Lot Not Found";
-	 public static final String  ReserveParkingSpotInLocalParkingLot = "Reserve Parking Spot In Local Parking Lot";
-	 public static final String  ReserveParkingSpotInLocalParkingLotFxmlPath = "Fxmls/ReserveParkingSpotInLocalParkingLot.fxml";; 
+	 public static final String ReserveParkingSpotInLocalParkingLot = "Reserve Parking Spot In Local Parking Lot";
+	 public static final String ReserveParkingSpotInLocalParkingLotFxmlPath = "Fxmls/ReserveParkingSpotInLocalParkingLot.fxml";
+	 public static final String ProduceReport = "Produce Report";
+	 public static final String ProduceReportFxmlPath = "Fxmls/ProduceReport.fxml";
+	 public static final String Table= "Table";
+	 public static final String TableFxmlPath = "Fxmls/Table.fxml";
+	 public static final String ReservationReport = "Reservation Report";
+	 public static final String ReservationReportFxmlPath = "Fxmls/ReservationReport.fxml";
+	 public static final String ActivityReportFxmlPath = "Fxmls/ActivityReport.fxml";
+	 public static final String ActivityReport = "Activity Report";
+	 public static final String ManagerProduceReport = "Manager Produce Report";
+	 public static final String ManagerProduceReportFxmlPath = "Fxmls/ManagerProduceReport.fxml";
+	 public static final String DateisToLate = "Date is too late, please select another";
+	 public static final String SelectYearAndMonth = "Please Select Year And Month And Try Again";
 
-	    
 }
