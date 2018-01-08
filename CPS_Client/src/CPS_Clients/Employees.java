@@ -31,6 +31,7 @@ public class Employees extends Application
 	    list.add(new Pair<String, URL>(ConstsEmployees.ReservationReport, myClass.getResource(ConstsEmployees.ReservationReportFxmlPath)));
 	    list.add(new Pair<String, URL>(ConstsEmployees.ActivityReport, myClass.getResource(ConstsEmployees.ActivityReportFxmlPath)));
 	    list.add(new Pair<String, URL>(ConstsEmployees.ManagerProduceReport, myClass.getResource(ConstsEmployees.ManagerProduceReportFxmlPath)));
+	    list.add(new Pair<String, URL>(ConstsEmployees.StatusReport, myClass.getResource(ConstsEmployees.StatusReportControllerFxmlPath)));
 
 	    
 	    ControllersManager controllersManager = new ControllersManager(list, primaryStage,ConstsEmployees.EmployeesLogin);

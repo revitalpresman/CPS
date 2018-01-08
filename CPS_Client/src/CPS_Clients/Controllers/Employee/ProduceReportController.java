@@ -68,7 +68,7 @@ public class ProduceReportController extends EmployeeBaseController
     @FXML
     void OnStatusReport(ActionEvent event) 
     {	
-    	//myControllersManager.SetScene(ConstsEmployees.ActivityReport,ConstsEmployees.ActivityReportFxmlPath);
+    	myControllersManager.SetScene(ConstsEmployees.StatusReport,ConstsEmployees.ProduceReport);
     }
 
 }

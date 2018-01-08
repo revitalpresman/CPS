@@ -54,5 +54,9 @@ public class ConstsEmployees {
 	 public static final String ManagerProduceReportFxmlPath = "Fxmls/ManagerProduceReport.fxml";
 	 public static final String DateisToLate = "Date is too late, please select another";
 	 public static final String SelectYearAndMonth = "Please Select Year And Month And Try Again";
+	 public static final String StatusReportControllerFxmlPath = "Fxmls/StatusReport.fxml";
+	 public static final String StatusReport = "Status Report";
+	 public static final String StatusReportSaved = "Status Report has been saved to the directory";
+	 public static final String ChoosePathAgain = "Please choose a path and try again";
 
 }
