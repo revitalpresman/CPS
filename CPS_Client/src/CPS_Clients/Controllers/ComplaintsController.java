@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'Complaints.fxml' Controller Class
- */
-
 package CPS_Clients.Controllers;
 
 import CPS_Clients.ConstsWeb;
@@ -16,13 +12,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import entities.Complaint;
 
 public class ComplaintsController extends BaseController {
 
 	@FXML // fx:id="complaintDeatils"
 	private TextArea complaintDeatils; // Value injected by FXMLLoader
-
+	
+    @FXML
+    private Label Headline;
+    
 	@FXML // fx:id="memberID"
 	private TextField memberID; // Value injected by FXMLLoader
 
@@ -55,7 +55,7 @@ public class ComplaintsController extends BaseController {
 				return;
 			}
 			if (ComplaintResponse.GetRequestResult().equals(RequestResult.NotFound)) {
-				DialogBuilder.AlertDialog(AlertType.ERROR, null, "Sorry, your ID Not found\n", null, false);
+				DialogBuilder.AlertDialog(AlertType.ERROR, null, "Sorry, your ID was not found\n", null, false);
 				return;
 			}
 			DialogBuilder.AlertDialog(AlertType.INFORMATION, Consts.Approved, Consts.ComplaintRegistered, null, false);

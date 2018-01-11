@@ -6,11 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import entities.CloseComplaintRequest;
+
 import CPS_Utilities.Consts;
 import CPS_Utilities.DialogBuilder;
 import CPS_Utilities.LoginIdentification;
@@ -20,8 +19,10 @@ import entities.ChangeParkingSpotStatusRequest;
 import entities.ChangeParkinglotStatusRequest;
 import entities.ChangeRatesRequest;
 import entities.ChangeRatesResponse;
+import entities.CloseComplaintRequest;
 import entities.Complaint;
 import entities.ComplaintsReport;
+import entities.CreditCustomerRequest;
 import entities.Customer;
 import entities.DisabledReport;
 import entities.Employee;
@@ -245,5 +246,25 @@ public class RequestsSender
     public static ServerResponse<StatusReport> GetStatusReport()
     {
 	return SendRequest(null, ClientServerConsts.GetStatusReport);
+    }
+    
+    public static ServerResponse<String> LoginUser(String username)
+    {
+	return SendRequest(username, ClientServerConsts.LoginUser);
+    }
+    
+    public static ServerResponse<String> LogoutUser(String username)
+    {
+	return SendRequest(username, ClientServerConsts.LogoutUser);
+    }
+    
+    public static ServerResponse<String> CloseReservation(String reservationId)
+    {
+	return SendRequest(reservationId, ClientServerConsts.CloseReservation);
+    }
+    
+    public static ServerResponse<CreditCustomerRequest> CreditCustomer(CreditCustomerRequest request)
+    {
+	return SendRequest(request, ClientServerConsts.AddCreditToCustomer);
     }
 }

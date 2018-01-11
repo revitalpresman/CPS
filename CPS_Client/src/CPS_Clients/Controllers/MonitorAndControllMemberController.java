@@ -1,40 +1,40 @@
 package CPS_Clients.Controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.control.Button;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-import javax.imageio.ImageTypeSpecifier;
-
-import CPS_Clients.ConstsWeb;
 import CPS_Utilities.Consts;
 import CPS_Utilities.DialogBuilder;
 import CPS_Utilities.InputValidator;
 import clientServerCPS.RequestResult;
 import clientServerCPS.RequestsSender;
 import clientServerCPS.ServerResponse;
-import entities.Customer;
 import entities.FullMembership;
+import entities.Parkinglot;
 import entities.PartialMembership;
-import entities.Reservation;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class MonitorAndControllMemberController extends BaseController {
 
 	private ArrayList<String> subscriptionTypes = new ArrayList<>();
 	String fullOrPartialMembership;
+	float rate = 5;
 
 	public MonitorAndControllMemberController() {
 		subscriptionTypes.add(Consts.Payment);
 	}
 
+    @FXML
+    private Label Headline;
+    
+    
 	@FXML // fx:id="SubscriptionRenewal"
 	private Button SubscriptionRenewal; // Value injected by FXMLLoader
 
@@ -72,7 +72,7 @@ public class MonitorAndControllMemberController extends BaseController {
 			}
 			if (monitorAndControllPartialMember.GetRequestResult().equals(RequestResult.NotFound)) {
 
-				DialogBuilder.AlertDialog(AlertType.ERROR, null, "Sorry, your reservation was not found", null, false);
+				DialogBuilder.AlertDialog(AlertType.ERROR, null, "Sorry, your membership was not found", null, false);
 				return;
 			}
 		}
@@ -85,7 +85,8 @@ public class MonitorAndControllMemberController extends BaseController {
 
 	@FXML
 	void OnSubscriptionRenewal(ActionEvent event) {
-		float paymentAmount = 100;
+		float paymentAmount = 0;
+		
 		String newDate = LocalDate.now().plusDays(28).toString();
 		newDate = "The expiration of the new subscription is: " + newDate;
 		String buttonResult = DialogBuilder.AlertDialog(AlertType.NONE, "Renewal Subscription", newDate,
@@ -101,6 +102,7 @@ public class MonitorAndControllMemberController extends BaseController {
 					return;
 				}
 				fullMebershipChanged=getFullMembership.GetResponseObject();
+				paymentAmount=72*rate;
 			}
 			else if (fullOrPartialMembership.equals("partialMembership")) {
 				ServerResponse<PartialMembership> getpartialMembership = RequestsSender.GetPartialMembership(Subscription_ID.getText());
@@ -109,6 +111,7 @@ public class MonitorAndControllMemberController extends BaseController {
 					return;
 				}
 				parialMebershipChanged=getpartialMembership.GetResponseObject();
+				paymentAmount=AmountToPay(parialMebershipChanged);
 			}
 			Consumer<Void> afterPayment = Void -> {
 				if (fullOrPartialMembership.equals("fullMembership")) {
@@ -159,6 +162,17 @@ public class MonitorAndControllMemberController extends BaseController {
 			return;
 
 		}
+	}
+	
+	private float AmountToPay( PartialMembership partialMember) {	
+			float cars=partialMember.GetCarList().size();
+			float hours=0;
+			hours=(cars>1?54:60);
+			String parkinglot=partialMember.GetParkinglot();
+			ServerResponse<Parkinglot>getParkingLot=RequestsSender.GetParkinglot(parkinglot);
+			rate=getParkingLot.GetResponseObject().getInAdvanceRate();
+			return ( cars * hours * rate);
+
 	}
 
 }

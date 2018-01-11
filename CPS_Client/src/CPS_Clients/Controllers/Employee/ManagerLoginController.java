@@ -20,6 +20,7 @@ import entities.enums.ParkinglotStatus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 
 public class ManagerLoginController extends EmployeeBaseController{
@@ -29,16 +30,19 @@ public class ManagerLoginController extends EmployeeBaseController{
 	public ManagerLoginController()
 	{
 		super();
-		DisableParkingSpotInputs.add("Parking Spot Width:");
-		DisableParkingSpotInputs.add("Parking Spot height:");
-		DisableParkingSpotInputs.add("Parking Spot depth:");
+		DisableParkingSpotInputs.add("Parking spot width:");
+		DisableParkingSpotInputs.add("Parking spot height:");
+		DisableParkingSpotInputs.add("Parking spot depth:");
 		
-		InitializeParkingSpotInputs.add("Parking Lot Width:");
+		InitializeParkingSpotInputs.add("Parking lot width:");
 		
 		RequestUpdatePricesInputs.add("New guest rate:");
-		RequestUpdatePricesInputs.add("New in advance rate:");
+		RequestUpdatePricesInputs.add("New in-advance rate:");
 	}
-	
+
+    @FXML
+    private Label Headline;
+    
     @FXML
     void OnInitializeParkingLot(ActionEvent event)
     {
@@ -159,7 +163,7 @@ public class ManagerLoginController extends EmployeeBaseController{
     @FXML
     void OnProduceReport(ActionEvent event) 
     {
-
+    	myControllersManager.SetScene(ConstsEmployees.ManagerProduceReport, ConstsEmployees.ManagerLogin);
     }
     @FXML
     void OnUndisableParkingLot(ActionEvent event)
@@ -232,6 +236,8 @@ public class ManagerLoginController extends EmployeeBaseController{
     @FXML
     void OnBack(ActionEvent event) 
     {
+	LogOut();
+	
     	myControllersManager.Back(PreviousScene,ConstsEmployees.ManagerLogin );
     }
 

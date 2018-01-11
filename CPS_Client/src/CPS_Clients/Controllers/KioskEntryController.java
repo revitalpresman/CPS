@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import CPS_Utilities.Consts;
 import CPS_Utilities.DialogBuilder;
@@ -21,10 +22,12 @@ import entities.FullMembership;
 import entities.PartialMembership;
 import entities.Reservation;
 import entities.enums.ReservationStatus;
+import entities.enums.ReservationType;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Dialog;
 
 public class KioskEntryController extends BaseController
 {
@@ -92,45 +95,92 @@ public class KioskEntryController extends BaseController
 	    if (reservationResponse.GetRequestResult().equals(RequestResult.Succeed))
 	    {
 		if (!reservation.getArrivalDate().equals(LocalDate.now())
-			|| !reservation.getArrivalHour().isAfter(LocalTime.now()))
+			|| !reservation.getArrivalHour().isBefore(LocalTime.now()))
 		{
+			
 		    DialogBuilder.AlertDialog(AlertType.ERROR, null,
-			    "You have a reservation, but not for now. \nYou can check your reservations details on the main page.",
+			    "You have a reservation, but not for now. \nYou can check your reservation details on the main page.",
 			    null, false);
 		    return;
 		}
 	    }
 	    
 	    if (reservationResponse.GetRequestResult().equals(RequestResult.Succeed)
+			    && inputs.get(1).equals(reservationResponse.GetResponseObject().getCarNumber())
+			    		&& !reservation.getParkingLot().equals(parkinglot))
+	    {
+	    	DialogBuilder.AlertDialog(AlertType.ERROR, null,
+				    "You have a reservation, but not for this parking lot. \nYou can check your reservation details on the main page.",
+				    null, false);
+			    return;
+	    }
+	    
+	    if (reservationResponse.GetRequestResult().equals(RequestResult.Succeed)
 		    && inputs.get(1).equals(reservationResponse.GetResponseObject().getCarNumber()))
 	    {
-		AddRealTimeParkingRequest request = new AddRealTimeParkingRequest(parkinglot, LocalDateTime.now(),
-			LocalDateTime.of(reservation.getLeavingDate(), reservation.getLeavingHour()),
-			reservation.getCarNumber(), false);
-		
-		ServerResponse<AddRealTimeParkingRequest> insertResponse = RequestsSender.TryInsertCar(request);
-		
-		if (insertResponse.GetRequestResult().equals(RequestResult.Succeed))
-		{
-		    
-		    DialogBuilder.AlertDialog(AlertType.INFORMATION, Consts.Approved, Consts.LeaveTheCarMessage, null,
-			    false);
-		    
-		    myControllersManager.GoToHomePage(Consts.KioskEntry);
-		}
-		else
-		{
-		    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);
-		    return;
-		}
+	    
+	    if(reservation.getReservationType().equals(ReservationType.Web) &&reservation.getArrivalHour().plusMinutes(30).isBefore(LocalTime.now()))
+	    {
+	    	float paymentAmount=(float)(reservation.getPrice()*0.2);
+	    	
+	    	Consumer<Void> afterPayment = Void ->
+	    	{
+	    		AddRealTimeParkingRequest request = new AddRealTimeParkingRequest(parkinglot, LocalDateTime.now(),
+	    				LocalDateTime.of(reservation.getLeavingDate(), reservation.getLeavingHour()),
+	    				reservation.getCarNumber(), false);
+	    			
+	    			ServerResponse<AddRealTimeParkingRequest> insertResponse = RequestsSender.TryInsertCar(request);
+	    			Platform.runLater(() ->
+	    			{
+	    			if (insertResponse.GetRequestResult().equals(RequestResult.Succeed))
+	    			{
+	    			    
+	    			    DialogBuilder.AlertDialog(AlertType.INFORMATION, Consts.Approved, Consts.LeaveTheCarMessage, null,
+	    				    false);
+	    			    
+	    			    myControllersManager.GoToHomePage(Consts.Payment);
+	    			    return;
+	    			}
+	    			else
+	    			{
+	    			    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);
+	    			    return;
+	    			}
+	    			});
+	    	};
+	    	myControllersManager.Payment(reservation, paymentAmount, afterPayment, Consts.KioskEntry);
 	    }
+	    else 
+	    {
+
+    		AddRealTimeParkingRequest request = new AddRealTimeParkingRequest(parkinglot, LocalDateTime.now(),
+    				LocalDateTime.of(reservation.getLeavingDate(), reservation.getLeavingHour()),
+    				reservation.getCarNumber(), false);
+    			
+    			ServerResponse<AddRealTimeParkingRequest> insertResponse = RequestsSender.TryInsertCar(request);
+    			if (insertResponse.GetRequestResult().equals(RequestResult.Succeed))
+    			{
+    			    
+    			    DialogBuilder.AlertDialog(AlertType.INFORMATION, Consts.Approved, Consts.LeaveTheCarMessage, null,
+    				    false);
+    			    
+    			    myControllersManager.GoToHomePage(Consts.Payment);
+    			    return;
+    			}
+    			else
+    			{
+    			    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);
+    			    return;
+    			}
+	    }
+	   }
 	});
     }
     
     @FXML
     void OnMemberEntry(ActionEvent event)
     {
-	String buttonResult = DialogBuilder.AlertDialog(AlertType.NONE, "Register", "Please choose subscription type",
+	String buttonResult = DialogBuilder.AlertDialog(AlertType.NONE, "Register", "Please choose a subscription type",
 		subscriptionTypes, true);
 	
 	switch (buttonResult)
@@ -186,7 +236,7 @@ public class KioskEntryController extends BaseController
 		    && LocalDate.now().isAfter(fullMembership.getExpiryDate()))
 	    {
 		DialogBuilder.AlertDialog(AlertType.ERROR, null,
-			"Your membership is expired. \nYou can renew on the main page -> Monitor and controll.", null,
+			"Your membership has expired. \nYou can renew on the main page -> Monitor and Control.", null,
 			false);
 		return;
 	    }
@@ -262,10 +312,21 @@ public class KioskEntryController extends BaseController
 		    && LocalDate.now().isAfter(partialMembership.getExpiryDate()))
 	    {
 		DialogBuilder.AlertDialog(AlertType.ERROR, null,
-			"Your membership is expired. \nYou can renew on the main page -> Monitor and controll.", null,
+			"Your membership has expired. \nYou can renew on the main page -> Monitor and Control.", null,
 			false);
 		return;
 	    }
+	    
+	
+	    if (partialMembershipResponse.GetRequestResult().equals(RequestResult.Succeed)
+			    &&(LocalDate.now().getDayOfWeek().name().equals("FRIDAY")||(LocalDate.now().getDayOfWeek().name().equals("SATURDAY"))))
+		    {
+	    
+			DialogBuilder.AlertDialog(AlertType.ERROR, null,
+				"You can not enter the parking lot during the weekend.", null,
+				false);
+			return;
+		    }
 	    
 	    if (partialMembershipResponse.GetRequestResult().equals(RequestResult.Succeed))
 	    {

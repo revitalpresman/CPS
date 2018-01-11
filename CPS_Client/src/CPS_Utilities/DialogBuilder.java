@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.stage.StageStyle;
 
 public class DialogBuilder
 {
@@ -37,7 +36,7 @@ public class DialogBuilder
 	Dialog<List<String>> dialog = new Dialog<>();
 	dialog.setTitle(dialogTitle);
 	
-	dialog.getDialogPane().getStylesheets().add(DialogBuilder.class.getResource("..\\CPS_Clients\\style.css").toExternalForm());
+	dialog.getDialogPane().getStylesheets().add(DialogBuilder.class.getResource("style.css").toExternalForm());
 	
 	// Set the button types
 	ButtonType submit = new ButtonType(buttonLabel, ButtonData.OK_DONE);
@@ -82,7 +81,7 @@ public class DialogBuilder
 	alert.setTitle(title);
 	alert.setHeaderText(header);
 	
-	alert.getDialogPane().getStylesheets().add(DialogBuilder.class.getResource("..\\CPS_Clients\\style.css").toExternalForm());
+	alert.getDialogPane().getStylesheets().add(DialogBuilder.class.getResource("style.css").toExternalForm());
 	
 	if (buttonNames != null)
 	{
@@ -90,7 +89,7 @@ public class DialogBuilder
 	    {
 		alert.getButtonTypes().add(new ButtonType(buttonName));
 	    }
-	}
+	} 
 	if (withCancel)
 	{
 	    alert.getButtonTypes().add(new ButtonType("Cancel", ButtonData.CANCEL_CLOSE));
