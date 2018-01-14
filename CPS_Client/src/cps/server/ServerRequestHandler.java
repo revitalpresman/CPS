@@ -2060,7 +2060,8 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 	    {
 		serverResponse = new ServerResponse<>(RequestResult.AlredyExist, request, null);
 	    }
-	    // Check if there is a free parking spot:
+
+	     
 	    else if (request.getIsGuestRequest() && !IsParkingSpotFree(request.getParkinglot(),
 		    request.getStartDateTime(), request.getExiDateTime()))
 	    {

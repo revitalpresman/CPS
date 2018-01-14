@@ -25,6 +25,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -39,6 +40,9 @@ public class GuestEntryController extends BaseController
     /** The car number. */
     @FXML
     private TextField carNumber;
+    
+    @FXML
+    private Button submit;
     
     /** The departure time. */
     @FXML
@@ -112,6 +116,8 @@ public class GuestEntryController extends BaseController
 	
 	prgBar.setVisible(true);
 	
+	submit.setDisable(true);
+	
 	CompletableFuture.runAsync(() ->
 	{
 	    
@@ -129,6 +135,8 @@ public class GuestEntryController extends BaseController
 	    Platform.runLater(() ->
 	    {
 		prgBar.setVisible(false);
+		
+		submit.setDisable(false);
 		
 		if (insertCarResponse.GetRequestResult().equals(RequestResult.ResourceNotAvaillable))
 		{

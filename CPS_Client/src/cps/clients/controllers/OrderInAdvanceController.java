@@ -293,7 +293,7 @@ public class OrderInAdvanceController extends BaseController
 	    LocalDateTime arrival = LocalDateTime.of(arrivalDate.getValue(), LocalTime.parse(arrivalHour.getText()));
 	    LocalDateTime leaving = LocalDateTime.of(leavingDate.getValue(), LocalTime.parse(leavingHour.getText()));
 	    
-	    if (arrival.isAfter(leaving))
+	    if (arrival.isAfter(leaving) && arrival.isBefore(LocalDateTime.now()))
 	    {
 		result = false;
 		leavingHour.setStyle("-fx-background-color: tomato;");

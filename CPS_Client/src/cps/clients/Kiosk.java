@@ -11,7 +11,7 @@ import javafx.util.Pair;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Kiosk.
+ * The Kiosk's entry.
  */
 public class Kiosk extends Application
 {
