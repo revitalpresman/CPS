@@ -64,10 +64,10 @@ public class GuestEntryController extends BaseController
     @FXML
     private ProgressBar prgBar;
     
-    /** The parkinglot name. */
+    /** The parking lot name. */
     private String parkinglotName;
     
-    /** The parkinglot. */
+    /** The parking lot. */
     private Parkinglot parkinglot;
     
     /**
@@ -87,7 +87,7 @@ public class GuestEntryController extends BaseController
     }
     
     /**
-     * On back.
+     * Client clicks on back button.
      *
      * @param event the event
      */
@@ -98,7 +98,7 @@ public class GuestEntryController extends BaseController
     }
     
     /**
-     * On submit.
+     * Client clicks on submit button.
      *
      * @param event the event
      */
