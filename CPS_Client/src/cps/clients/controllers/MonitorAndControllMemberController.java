@@ -31,13 +31,10 @@ import javafx.scene.control.TextField;
 public class MonitorAndControllMemberController extends BaseController
 {
     
-    /** The subscription types. */
     private ArrayList<String> subscriptionTypes = new ArrayList<>();
     
-    /** The full or partial membership. */
     String fullOrPartialMembership;
     
-    /** The rate. */
     float rate = 5;
     
     /**

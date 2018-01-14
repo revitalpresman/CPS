@@ -34,54 +34,40 @@ import javafx.scene.control.TextField;
 public class PartialMembershipRegisterController extends BaseController
 {
     
-    /** The car number. */
     @FXML
     private TextField carNumber;
     
-    /** The parking lot. */
     @FXML
     private MenuButton parkingLot;
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
-    /** The exit hour. */
     @FXML
     private TextField exitHour;
     
-    /** The car list view. */
     @FXML
     private ListView<String> carListView;
     
-    /** The id. */
     @FXML
     private TextField id;
     
-    /** The starting date picker. */
     @FXML
     private DatePicker startingDatePicker;
     
-    /** The email. */
     @FXML
     private TextField email;
     
-    /** The partial membership. */
     private PartialMembership partialMembership;
     
-    /** The customer. */
     private Customer customer;
     
-    /** The parking lot. */
     private String parking_Lot;
     
-    /** The cars. */
     private ObservableList<String> cars = FXCollections.observableArrayList();
     
-    /** list of parking lots.. */
     private ArrayList<Parkinglot> parkinglist = new ArrayList<Parkinglot>();
     
-    /** The car list. */
     private ArrayList<String> carList = new ArrayList<String>();
     
     /**
@@ -93,7 +79,7 @@ public class PartialMembershipRegisterController extends BaseController
 	carListView.setEditable(true);
 	startingDatePicker.setEditable(true);
 	startingDatePicker.setValue(LocalDate.now());
-	ServerResponse<ArrayList<Parkinglot>> initListParkinglot = RequestsSender.GetAllParkinglots();
+	ServerResponse<ArrayList<Parkinglot>> initListParkinglot = RequestsSender.GetAllParkinglots(false);
 	if (initListParkinglot.GetRequestResult().equals(RequestResult.Failed))
 	{
 	    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);

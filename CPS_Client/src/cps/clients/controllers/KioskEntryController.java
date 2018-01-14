@@ -38,30 +38,25 @@ import javafx.scene.control.ProgressBar;
 public class KioskEntryController extends BaseController
 {
     
-    /** The prg bar pre order. */
     @FXML
     private ProgressBar prgBarPreOrder;
     
-    /** The prg bar member. */
     @FXML
     private ProgressBar prgBarMember;
     
-    /** The Pre order inputs. */
     private ArrayList<String> PreOrderInputs = new ArrayList<>();
     
-    /** The Member inputs. */
     private ArrayList<String> MemberInputs = new ArrayList<>();
     
-    /** The subscription types. */
     private ArrayList<String> subscriptionTypes = new ArrayList<>();
     
-    /** The parking lot. */
     private String parkinglot;
     
     /**
      * Instantiates a new kiosk entry controller.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public KioskEntryController() throws IOException
     {
@@ -84,9 +79,12 @@ public class KioskEntryController extends BaseController
     /**
      * Client clicks on guest entry button.
      *
-     * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
-     * @throws URISyntaxException the URI syntax exception
+     * @param event
+     *            the event
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     * @throws URISyntaxException
+     *             the URI syntax exception
      */
     @FXML
     void OnGuestEntry(ActionEvent event) throws IOException, URISyntaxException
@@ -97,7 +95,8 @@ public class KioskEntryController extends BaseController
     /**
      * Client clicks on pre-order button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnPreOrderEntry(ActionEvent event)
@@ -231,7 +230,8 @@ public class KioskEntryController extends BaseController
     /**
      * Client clicks on member entry button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnMemberEntry(ActionEvent event)
@@ -257,7 +257,8 @@ public class KioskEntryController extends BaseController
     /**
      * Client clicks on back button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnBack(ActionEvent event)
@@ -265,7 +266,6 @@ public class KioskEntryController extends BaseController
 	myControllersManager.Back(PreviousScene, Consts.KioskEntry);
     }
     
-
     private void HandleFullMember()
     {
 	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, MemberInputs, Consts.Submit);
@@ -351,7 +351,6 @@ public class KioskEntryController extends BaseController
 	});
     }
     
-
     private void HandlePartialMember()
     {
 	Dialog<List<String>> dialog = DialogBuilder.InputsDialog(Consts.FillRequest, MemberInputs, Consts.Submit);

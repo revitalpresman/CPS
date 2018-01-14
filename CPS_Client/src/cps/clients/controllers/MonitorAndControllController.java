@@ -12,36 +12,38 @@ import javafx.scene.control.Label;
 public class MonitorAndControllController extends BaseController
 {
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
     /**
      * Client clicks on member button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnMember(ActionEvent event)
     {
-    	myControllersManager.SetScene(Consts.MonitorAndControllMember, Consts.MonitorAndControll);
+	myControllersManager.SetScene(Consts.MonitorAndControllMember, Consts.MonitorAndControll);
     }
     
     /**
-     *Client clicks on not a member button.
+     * Client clicks on not a member button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnNotAMember(ActionEvent event)
     {
-    	myControllersManager.SetScene(Consts.MonitorAndControllNotMember, Consts.MonitorAndControll);
+	myControllersManager.SetScene(Consts.MonitorAndControllNotMember, Consts.MonitorAndControll);
     }
     
     /**
      * Client clicks on customer info button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnCustomerInfo(ActionEvent event)
@@ -52,7 +54,8 @@ public class MonitorAndControllController extends BaseController
     /**
      * Client clicks on back button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnBack(ActionEvent event)

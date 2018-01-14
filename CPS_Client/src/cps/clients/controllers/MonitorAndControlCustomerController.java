@@ -25,26 +25,23 @@ import javafx.scene.control.TextField;
 public class MonitorAndControlCustomerController extends BaseController
 {
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
-    /** The text box. */
     @FXML
     private TextArea textBox;
     
-    /** The customer ID. */
     @FXML
     private TextField customerID;
     
-    /** The prg bar. */
     @FXML
     private ProgressBar prgBar;
     
     /**
      * Client clicks on submit button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnSubmit(ActionEvent event)
@@ -91,7 +88,8 @@ public class MonitorAndControlCustomerController extends BaseController
     /**
      * Client clicks on back button .
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnBack(ActionEvent event)

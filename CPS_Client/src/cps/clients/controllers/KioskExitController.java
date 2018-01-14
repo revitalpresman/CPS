@@ -35,20 +35,15 @@ import javafx.scene.control.Alert.AlertType;
 public class KioskExitController extends BaseController
 {
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
-    /** The Pre order inputs. */
     private ArrayList<String> PreOrderInputs = new ArrayList<>();
     
-    /** The Member inputs. */
     private ArrayList<String> MemberInputs = new ArrayList<>();
     
-    /** The parking lot name. */
     private String parkinglotName;
     
-    /** The parking lot. */
     private Parkinglot parkinglot;
     
     /**

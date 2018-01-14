@@ -27,7 +27,6 @@ import javafx.scene.control.Label;
 public class WebController extends BaseController
 {
     
-    /** The subscription types. */
     private ArrayList<String> subscriptionTypes = new ArrayList<>();
     
     /**
@@ -39,14 +38,14 @@ public class WebController extends BaseController
 	subscriptionTypes.add(Consts.PartialMembership);
     }
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
     /**
-     * Client clicks on complaines button.
+     * Client clicks on complaints button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnComplaines(ActionEvent event)
@@ -57,7 +56,8 @@ public class WebController extends BaseController
     /**
      * Client clicks on register button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnRegister(ActionEvent event)
@@ -84,7 +84,8 @@ public class WebController extends BaseController
     /**
      * Client clicks on monitor and control button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnMonitorAndControll(ActionEvent event)
@@ -95,7 +96,8 @@ public class WebController extends BaseController
     /**
      * Client clicks on order in advance button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnOrderInAdvance(ActionEvent event)
@@ -107,7 +109,8 @@ public class WebController extends BaseController
     /**
      * Client clicks on cancel order button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnCancelOrder(ActionEvent event)

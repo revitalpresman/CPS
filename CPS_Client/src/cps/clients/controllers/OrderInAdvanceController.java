@@ -36,52 +36,39 @@ import javafx.scene.control.MenuButton;
 public class OrderInAdvanceController extends BaseController
 {
     
-    /** The car number. */
-    @FXML // fx:id="carNumber"
-    private TextField carNumber; // Value injected by FXMLLoader
+    @FXML 
+    private TextField carNumber;
     
-    /** The parking lot. */
-    @FXML // fx:id="parkingLot"
-    private MenuButton parkingLot; // Value injected by FXMLLoader
+    @FXML
+    private MenuButton parkingLot; 
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
-    /** The arrival hour. */
-    @FXML // fx:id="arrivalHour"
-    private TextField arrivalHour; // Value injected by FXMLLoader
+    @FXML 
+    private TextField arrivalHour;
     
-    /** The leaving hour. */
-    @FXML // fx:id="leavingHour"
-    private TextField leavingHour; // Value injected by FXMLLoader
+    @FXML 
+    private TextField leavingHour; 
     
-    /** The customer id. */
-    @FXML // fx:id="customerId"
-    private TextField customerId; // Value injected by FXMLLoader
+    @FXML 
+    private TextField customerId; 
     
-    /** The email. */
-    @FXML // fx:id="email"
-    private TextField email; // Value injected by FXMLLoader
+    @FXML 
+    private TextField email; 
     
-    /** The arrival date. */
-    @FXML // fx:id="arrivalDate"
-    private DatePicker arrivalDate; // Value injected by FXMLLoader
+    @FXML 
+    private DatePicker arrivalDate;
     
-    /** The leaving date. */
-    @FXML // fx:id="leavingDate"
-    private DatePicker leavingDate; // Value injected by FXMLLoader
+    @FXML
+    private DatePicker leavingDate; 
     
-    /**list of parking lots. */
     ArrayList<Parkinglot> parkinglist = new ArrayList<Parkinglot>();
     
-    /** The parking lot. */
     String parking_Lot;
     
-    /** The reservation. */
     Reservation reservation;
     
-    /** The customer. */
     Customer customer;
     
     /**
@@ -94,7 +81,7 @@ public class OrderInAdvanceController extends BaseController
 	arrivalDate.setValue(LocalDate.now());
 	leavingDate.setEditable(true);
 	leavingDate.setValue(LocalDate.now());
-	ServerResponse<ArrayList<Parkinglot>> initListParkinglot = RequestsSender.GetAllParkinglots();
+	ServerResponse<ArrayList<Parkinglot>> initListParkinglot = RequestsSender.GetAllParkinglots(false);
 	int length = initListParkinglot.GetResponseObject().size();
 	for (int i = 0; i < length; i++)
 	{

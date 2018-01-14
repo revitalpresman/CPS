@@ -26,33 +26,25 @@ import javafx.scene.control.TextField;
 public class FullMembershipRegisterController extends BaseController
 {
     
-    /** The starting date picker. */
     @FXML
     private DatePicker startingDatePicker;
     
-    /** The car number. */
     @FXML
     private TextField carNumber;
     
-    /** The Headline. */
     @FXML
     private Label Headline;
     
-    /** The id. */
     @FXML
     private TextField id;
     
-    /** The email. */
     @FXML
     private TextField email;
     
-    /** The full membership. */
     FullMembership fullMembership;
     
-    /** The customer. */
     Customer customer;
     
-    /** The rate. */
     private final int rate = 5;
     
     /**

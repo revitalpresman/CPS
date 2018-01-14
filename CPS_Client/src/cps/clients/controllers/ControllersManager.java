@@ -14,7 +14,6 @@ import cps.utilities.Consts;
 import cps.utilities.DialogBuilder;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -22,21 +21,18 @@ import javafx.util.Pair;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ControllersManager.
+ * The Class ControllersManager. This class is in charge on the construction of
+ * the scenes and switches between windows.
  */
 public class ControllersManager
 {
     
-    /** The home page. */
     private String homePage;
     
-    /** The my stage. */
     private Stage myStage;
     
-    /** The scene map. */
     private HashMap<String, Scene> sceneMap = new HashMap<>();
     
-    /** The controller map. */
     private HashMap<String, BaseController> controllerMap = new HashMap<>();
     
     /**
@@ -105,12 +101,6 @@ public class ControllersManager
 	}
     }
     
-    /**
-     * My set scene.
-     *
-     * @param sceneName
-     *            the scene name
-     */
     private void MySetScene(String sceneName)
     {
 	myStage.setScene(sceneMap.get(sceneName));
@@ -136,7 +126,7 @@ public class ControllersManager
     }
     
     /**
-     * Back.
+     * Switches to the previous scene
      *
      * @param sceneName
      *            the scene name
@@ -165,7 +155,7 @@ public class ControllersManager
     }
     
     /**
-     * Payment.
+     * Go to Payment controller (needs a special treatment).
      *
      * @param object
      *            the object
@@ -211,32 +201,5 @@ public class ControllersManager
     public Stage getStage()
     {
 	return myStage;
-    }
-    
-    /**
-     * Wait crusor.
-     *
-     * @param scene
-     *            the scene
-     */
-    public void WaitCrusor(String scene)
-    {
-	Scene currentScene = sceneMap.get(scene);
-	
-	currentScene.setCursor(Cursor.WAIT);
-	
-    }
-    
-    /**
-     * Close wait crusor.
-     *
-     * @param scene
-     *            the scene
-     */
-    public void CloseWaitCrusor(String scene)
-    {
-	Scene currentScene = sceneMap.get(scene);
-	
-	currentScene.setCursor(Cursor.DEFAULT);
     }
 }
