@@ -104,7 +104,8 @@ public class PartialMembershipRegisterController extends BaseController
     /**
      * Client clicks on back button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnBack(ActionEvent event)
@@ -119,7 +120,8 @@ public class PartialMembershipRegisterController extends BaseController
     /**
      * Client clicks on submit and pay button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnSubmitAndPay(ActionEvent event)
@@ -144,6 +146,13 @@ public class PartialMembershipRegisterController extends BaseController
 			|| AddCustomerIfNotExist.GetRequestResult().equals(RequestResult.Failed))
 		{
 		    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);
+		    
+		    return;
+		}
+		
+		if (registerPartialMembershipResponse.GetRequestResult().equals(RequestResult.AlredyExist))
+		{
+		    DialogBuilder.AlertDialog(AlertType.ERROR, null, "One of your cars is already registered to this parking lot.", null, false);
 		    
 		    return;
 		}
@@ -195,7 +204,8 @@ public class PartialMembershipRegisterController extends BaseController
     /**
      * Client clicks on add car button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnAddCar(ActionEvent event)
@@ -212,7 +222,8 @@ public class PartialMembershipRegisterController extends BaseController
     /**
      * Client clicks on remove selected button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnRemoveSelected(ActionEvent event)
@@ -237,7 +248,7 @@ public class PartialMembershipRegisterController extends BaseController
     }
     
     /**
-     *Sets the payment amount.
+     * Sets the payment amount.
      *
      * @return the float
      */

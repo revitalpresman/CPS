@@ -60,7 +60,8 @@ public class FullMembershipRegisterController extends BaseController
     /**
      * Client clicks on back button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnBack(ActionEvent event)
@@ -70,9 +71,10 @@ public class FullMembershipRegisterController extends BaseController
     }
     
     /**
-     *Client clicks on submit and pay button.
+     * Client clicks on submit and pay button.
      *
-     * @param event the event
+     * @param event
+     *            the event
      */
     @FXML
     void OnSubmitAndPay(ActionEvent event)
@@ -104,6 +106,13 @@ public class FullMembershipRegisterController extends BaseController
 			|| AddCustomerIfNotExist.GetRequestResult().equals(RequestResult.Failed))
 		{
 		    DialogBuilder.AlertDialog(AlertType.ERROR, null, Consts.ServerProblemMessage, null, false);
+		    
+		    return;
+		}
+		
+		if (registerFullMembershipResponse.GetRequestResult().equals(RequestResult.AlredyExist))
+		{
+		    DialogBuilder.AlertDialog(AlertType.ERROR, null, "We alreay have a full membership client signed with this car.", null, false);
 		    
 		    return;
 		}

@@ -60,8 +60,7 @@ import cps.utilities.CPS_Tracer;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ServerRequestHandler.
- * Handle a single sockets in parallel.
+ * The Class ServerRequestHandler. Handle a single sockets in parallel.
  */
 public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 {
@@ -114,8 +113,8 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
     }
     
     /**
-     * Handle request async.
-     * Instantiate a ServerRequestHandler and Handle the request with a new thread.
+     * Handle request async. Instantiate a ServerRequestHandler and Handle the
+     * request with a new thread.
      *
      * @param socket
      *            the socket
@@ -538,7 +537,7 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 			CPS_Tracer.TraceInformation("Reservation number: " + resultSet.getString(1) + " has closed");
 			
 			resultSet.updateString(10, ReservationStatus.NotFullfilled.toString());
-			resultSet.updateRow();			
+			resultSet.updateRow();
 		    }
 		    
 		    LocalDateTime starTime = LocalDateTime.of(LocalDate.parse(resultSet.getString(6)),
@@ -959,6 +958,32 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 	
 	try
 	{
+	    // Check if the car is not singed already:
+	    
+	    PreparedStatement preparedStatement = mySqlConnection.prepareStatement(
+		    "SELECT * FROM FullMemberships WHERE  carNumber = ? ");
+	    
+	    preparedStatement.setString(1, fullMembership.GetCarNumber());
+	    
+	    ResultSet resultSet = preparedStatement.executeQuery();
+	    
+	    while (resultSet.next())
+	    {
+		LocalDate expiryDateTime = LocalDate.parse(resultSet.getString(4));
+		
+		if (expiryDateTime.isAfter(LocalDate.now()))
+		{
+		    ServerResponse<FullMembership> serverResponse = new ServerResponse<>(RequestResult.AlredyExist, fullMembership,
+			    "car exists");
+		    
+		    CPS_Tracer.TraceInformation("Server response to client after register: \n" + serverResponse);
+		    
+		    return serverResponse;
+		}
+	    }
+	    
+	    // Register:
+	    
 	    String preparedStatementString = "INSERT INTO FullMemberships(subscriptionId, customerId, startDate, expiryDate, carNumber) VALUES(?, ?, ?, ?, ?)";
 	    
 	    ArrayList<String> values = new ArrayList<>();
@@ -1092,6 +1117,33 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 	try
 	{
 	    ServerResponse<PartialMembership> serverResponse;
+	    
+	    // Check if he is not registered already
+	    
+	    for (String carString : partialMembership.GetCarList())
+	    {
+		PreparedStatement preparedStatement = mySqlConnection.prepareStatement(
+			"SELECT * FROM PartialMemberships WHERE parkinglot = ? AND carList LIKE '%" + carString + "%'");
+		
+		preparedStatement.setString(1, partialMembership.GetParkinglot());
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while (resultSet.next())
+		{
+		    LocalDate expiryDateTime = LocalDate.parse(resultSet.getString(4));
+		    
+		    if (expiryDateTime.isAfter(LocalDate.now()))
+		    {
+			serverResponse = new ServerResponse<PartialMembership>(RequestResult.AlredyExist,
+				partialMembership, "car exists");
+			
+			CPS_Tracer.TraceInformation("Server response to client after register: \n" + serverResponse);
+			
+			return serverResponse;
+		    }
+		}
+	    }
 	    
 	    // Check if we have space for him:
 	    
@@ -1278,11 +1330,12 @@ public class ServerRequestHandler implements Closeable// pLw9Zaqp{ey`2,Ve
 		parkinglots.add(parkinglot);
 	    }
 	    
-	    if(onlyNotFull)
+	    if (onlyNotFull)
 	    {
-		for(Parkinglot p : parkinglots)
+		for (Parkinglot p : parkinglots)
 		{
-		    if(!IsParkingSpotFree(p.getParkinglotName(), LocalDateTime.now(), LocalDateTime.now().plusHours(2)))
+		    if (!IsParkingSpotFree(p.getParkinglotName(), LocalDateTime.now(),
+			    LocalDateTime.now().plusHours(2)))
 		    {
 			parkinglots.remove(p);
 		    }
