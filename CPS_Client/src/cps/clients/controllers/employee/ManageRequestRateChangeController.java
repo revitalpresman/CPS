@@ -25,24 +25,20 @@ import javafx.scene.control.ListView;
 public class ManageRequestRateChangeController extends EmployeeBaseController
 {
     
-    /** The my buttons. */
     ArrayList<String> myButtons = new ArrayList<String>();
     
-    /** The my requests. */
     ArrayList<ChangeRatesRequest> myRequests;
     
-    /** The Requests list. */
     @FXML
     private ListView<String> RequestsList;
     
-    /** The current request id. */
     private String currentRequestId = null;
     
     /**
-     * On load requests.
-     *
-     * @param event
-     *            the event
+     * This function loads parking-lot managers' requests from the Data Base into a list.
+     * So that the CEO could watch them.
+     * @param event the event
+
      */
     @FXML
     void OnLoadRequests(ActionEvent event)
@@ -75,10 +71,9 @@ public class ManageRequestRateChangeController extends EmployeeBaseController
     }
     
     /**
-     * On handle requests.
-     *
-     * @param event
-     *            the event
+     * This function helps the CEO handle the requests of the parking-lot managers about changing parking lot rates.
+     * The CEO selects a request by request id and decides whether to approve it or not.
+     * @param event the event
      */
     @FXML
     void OnHandleRequests(ActionEvent event)
@@ -129,10 +124,8 @@ public class ManageRequestRateChangeController extends EmployeeBaseController
     }
     
     /**
-     * On back.
-     *
-     * @param event
-     *            the event
+	 *Sets the Previews scene
+     * @param event the event
      */
     @FXML
     void OnBack(ActionEvent event)
