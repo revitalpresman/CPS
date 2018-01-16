@@ -47,7 +47,7 @@ public class EmployeesLoginController extends EmployeeBaseController
     
     /**
      * On login.
-     *
+     *Logins to the employee account if he isn't already logged in.
      * @param event the event
      * @throws InterruptedException the interrupted exception
      * @throws ExecutionException the execution exception

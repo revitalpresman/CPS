@@ -33,25 +33,25 @@ public class ActivityReportController extends EmployeeBaseController{
 	public class MyRow
 	{
 		
-		/** The daynum. */
+		/** The  day of the month.. */
 		String daynum;
 		
-		/** The numofex. */
+		/** The number of canceled orders. */
 		String numofex;
 		
-		/** The numofcanc. */
+		/** The total amount of hours of disabled parking spots. */
 		String numofcanc;
 		
-		/** The numofdis. */
+		/** The the the number of executed orders. */
 		String numofdis;
 		
 		/**
 		 * Instantiates a new my row.
 		 *
-		 * @param a the a
-		 * @param b the b
-		 * @param c the c
-		 * @param d the d
+		 * @param a the  day of the month.
+		 * @param b the number of canceled orders.
+		 * @param c the total amount of hours of disabled parking spots.
+		 * @param d the the number of executed orders.
 		 */
 		public MyRow(String a, String b, String c, String d) 
 		{
@@ -62,36 +62,36 @@ public class ActivityReportController extends EmployeeBaseController{
 		}
 		
 		/**
-		 * Gets the daynum.
+		 * Gets the day of the month.
 		 *
-		 * @return the daynum
+		 * @return the day of the month.
 		 */
 		public String getDaynum() {
 			return daynum;
 		}
 		
 		/**
-		 * Gets the numofcanc.
+		 * Gets the number of canceled orders.
 		 *
-		 * @return the numofcanc
+		 * @return the number of canceled orders.
 		 */
 		public String getNumofcanc() {
 			return numofcanc;
 		}
 		
 		/**
-		 * Gets the numofdis.
+		 * Gets the the total amount of hours of disabled parking spots.
 		 *
-		 * @return the numofdis
+		 * @return the total amount of hours of disabled parking spots.
 		 */
 		public String getNumofdis() {
 			return numofdis;
 		}
 		
 		/**
-		 * Gets the numofex.
+		 * Gets the number of executed orders.
 		 *
-		 * @return the numofex
+		 * @return the number of executed orders.
 		 */
 		public String getNumofex() {
 			return numofex;
@@ -141,10 +141,10 @@ public class ActivityReportController extends EmployeeBaseController{
     @FXML
     private Label Test;
     
-    /** The mon. */
+    /** The month. */
     String mon;
     
-    /** The yr. */
+    /** The year. */
     String yr;
     
     /**
@@ -256,7 +256,7 @@ public class ActivityReportController extends EmployeeBaseController{
 
     /**
      * On back.
-     *
+     * Sets the Previews scene
      * @param event the event
      */
     @FXML
@@ -268,7 +268,7 @@ public class ActivityReportController extends EmployeeBaseController{
 
     /**
      * On show.
-     *
+     * Displays the report by the selected month and year
      * @param event the event
      */
     @FXML

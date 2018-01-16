@@ -85,7 +85,7 @@ public class ReserveParkingSpotController extends EmployeeBaseController
     
     /**
      * On submit.
-     *
+     *Sends the reservation to the DB
      * @param event the event
      */
     @FXML
@@ -117,7 +117,7 @@ public class ReserveParkingSpotController extends EmployeeBaseController
     
     /**
      * On back.
-     *
+     *Sets the Previews scene
      * @param event the event
      */
     @FXML

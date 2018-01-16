@@ -83,7 +83,7 @@ public class ReservationReportController extends EmployeeBaseController {
 	
 
 	
-    /** The excersized reservations. */
+    /** The exercised reservations. */
     @FXML
     private TextField excersizedReservations;
 
@@ -126,8 +126,8 @@ public class ReservationReportController extends EmployeeBaseController {
 		
 
     /**
-     * On show 2.
-     *
+     * On show .
+     *Produces the report from the relevant data after getting it from the DB 
      * @param event the event
      */
     @FXML
@@ -164,7 +164,7 @@ public class ReservationReportController extends EmployeeBaseController {
 
     /**
      * On back.
-     *
+     *Sets the Previews scene
      * @param event the event
      */
     @FXML

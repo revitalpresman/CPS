@@ -62,7 +62,7 @@ public class CeoLoginController extends EmployeeBaseController
     
     /**
      * On initialize parking lot.
-     *
+     * Adds new parking lot to the DB and sets its sizes by the given inputs.
      * @param event the event
      */
     @FXML
@@ -74,7 +74,6 @@ public class CeoLoginController extends EmployeeBaseController
 	result.ifPresent(inputs ->
 	{
 	    String parkinglotName = inputs.get(0);
-	    // parkinglotName= parkinglotName.toLowerCase();
 	    String s_width = inputs.get(1);
 	    int width = Integer.parseInt(s_width);
 	    boolean IsValid = Pattern.matches("[0-9]+", inputs.get(1)) && 4 <= Integer.parseInt(inputs.get(1))
@@ -99,8 +98,8 @@ public class CeoLoginController extends EmployeeBaseController
     }
     
     /**
-     * On rigister disabled parking lot.
-     *
+     * On register disabled parking lot.
+     *Registers disabled parking lot in to the DB by the given parking lot name.
      * @param event the event
      */
     @FXML
@@ -147,7 +146,7 @@ public class CeoLoginController extends EmployeeBaseController
     
     /**
      * On reserve parking spot.
-     *
+     *Reserves parking spot in the DB by the given inputs in the given parking lot name .
      * @param event the event
      */
     @FXML
@@ -157,8 +156,8 @@ public class CeoLoginController extends EmployeeBaseController
     }
     
     /**
-     * On register disabeled parking spot.
-     *
+     * On register disabled parking spot.
+     *Disable parking spot in the DB by the given inputs in the given parking lot name .
      * @param event the event
      */
     @FXML
@@ -219,7 +218,7 @@ public class CeoLoginController extends EmployeeBaseController
     
     /**
      * On update prices.
-     *
+     *Calls the scene where all update prices request are getting managed . 
      * @param event the event
      */
     @FXML
@@ -230,7 +229,7 @@ public class CeoLoginController extends EmployeeBaseController
     
     /**
      * On produce report.
-     *
+     *Calls the scene where reports are produced
      * @param event the event
      */
     @FXML
@@ -240,8 +239,8 @@ public class CeoLoginController extends EmployeeBaseController
     }
     
     /**
-     * On undisable parking lot.
-     *
+     * On enable parking lot.
+     *Registers enabled parking lot in to the DB by the given parking lot name.
      * @param event the event
      */
     @FXML
@@ -286,8 +285,8 @@ public class CeoLoginController extends EmployeeBaseController
     }
     
     /**
-     * On undisable parking spot.
-     *
+     * On enable parking spot.
+     *Enable parking spot in the DB by the given inputs in the given parking lot name .
      * @param event the event
      */
     @FXML
@@ -348,7 +347,7 @@ public class CeoLoginController extends EmployeeBaseController
     
     /**
      * On back.
-     *
+     *Sets the Previews scene
      * @param event the event
      */
     @FXML

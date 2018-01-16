@@ -60,7 +60,7 @@ public class ManagerLoginController extends EmployeeBaseController{
     
     /**
      * On initialize parking lot.
-     *
+     * Adds new parking lot to the DB and sets its sizes by the given inputs.
      * @param event the event
      */
     @FXML
@@ -90,8 +90,8 @@ public class ManagerLoginController extends EmployeeBaseController{
     }
 
     /**
-     * On rigister disabled parking lot.
-     *
+     * On register disabled parking lot.
+     *Registers this parking lot as disabled in to the DB .
      * @param event the event
      */
     @FXML
@@ -127,7 +127,7 @@ public class ManagerLoginController extends EmployeeBaseController{
 
     /**
      * On reserve parking spot.
-     *
+     *Reserves parking spot in the DB by the given inputs .
      * @param event the event
      */
     @FXML
@@ -137,8 +137,8 @@ public class ManagerLoginController extends EmployeeBaseController{
     }
     
     /**
-     * On register disabeled parking spot.
-     *
+     * On register disabled parking spot.
+     *Disable parking spot in the DB by the given inputs .
      * @param event the event
      */
     @FXML
@@ -180,7 +180,7 @@ public class ManagerLoginController extends EmployeeBaseController{
 
     /**
      * On request update prices.
-     *
+     *Sends a request to update prices to the DB, this request will be displayed to the CEO .
      * @param event the event
      */
     @FXML
@@ -202,7 +202,7 @@ public class ManagerLoginController extends EmployeeBaseController{
 
     /**
      * On produce report.
-     *
+     *Calls the scene where reports are produced
      * @param event the event
      */
     @FXML
@@ -212,8 +212,8 @@ public class ManagerLoginController extends EmployeeBaseController{
     }
     
     /**
-     * On undisable parking lot.
-     *
+     * On enable parking lot.
+     *Registers this parking lot as enabled in the DB
      * @param event the event
      */
     @FXML
@@ -248,8 +248,8 @@ public class ManagerLoginController extends EmployeeBaseController{
     }
     
     /**
-     * On undisable parking spot.
-     *
+     * On enable parking spot.
+     *Enable parking spot in the DB by the given inputs .
      * @param event the event
      */
     @FXML
@@ -291,7 +291,7 @@ public class ManagerLoginController extends EmployeeBaseController{
 
     /**
      * On back.
-     *
+     *Sets the Previews scene
      * @param event the event
      */
     @FXML

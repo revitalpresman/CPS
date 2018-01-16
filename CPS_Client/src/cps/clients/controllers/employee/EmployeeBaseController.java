@@ -31,7 +31,7 @@ public class EmployeeBaseController extends BaseController
     }
     
     /**
-     * Log out.
+     * Log out from the employee account.
      */
     protected void LogOut()
     {

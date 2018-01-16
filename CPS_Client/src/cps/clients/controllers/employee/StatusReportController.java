@@ -36,7 +36,7 @@ public class StatusReportController extends EmployeeBaseController
     
     /**
      * On browse.
-     *
+     *Opens directory chooser 
      * @param event the event
      */
     @FXML
@@ -53,7 +53,7 @@ public class StatusReportController extends EmployeeBaseController
     
     /**
      * On back.
-     *
+     *Sets the Previews scene
      * @param event the event
      */
     @FXML
@@ -64,7 +64,7 @@ public class StatusReportController extends EmployeeBaseController
     
     /**
      * On save.
-     *
+     *Sends request to build a PDF with the status report and save it to chosen directory
      * @param event the event
      */
     @FXML

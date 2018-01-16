@@ -38,8 +38,8 @@ public class ManageRequestRateChangeController extends EmployeeBaseController {
 	private String currentRequestId = null;
 
     /**
-     * On load requests.
-     *
+     * This function loads parking-lot managers' requests from the Data Base into a list.
+     * So that the CEO could watch them.
      * @param event the event
      */
     @FXML
@@ -75,8 +75,8 @@ public class ManageRequestRateChangeController extends EmployeeBaseController {
 
     
     /**
-     * On handle requests.
-     *
+     * This function helps the CEO handle the requests of the parking-lot managers about changing parking lot rates.
+     * The CEO selects a request by request id and decides whether to approve it or not.
      * @param event the event
      */
     @FXML
@@ -127,8 +127,7 @@ public class ManageRequestRateChangeController extends EmployeeBaseController {
 
 
     /**
-     * On back.
-     *
+	 *Sets the Previews scene
      * @param event the event
      */
     @FXML
