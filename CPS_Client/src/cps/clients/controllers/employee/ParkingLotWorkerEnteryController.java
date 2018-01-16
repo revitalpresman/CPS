@@ -30,10 +30,8 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class ParkingLotWorkerEnteryController extends EmployeeBaseController {
 	
-	/** The Initialize parking spot inputs. */
 	private ArrayList<String> InitializeParkingSpotInputs = new ArrayList<>();
 	
-	/** The Disable parking spot inputs. */
 	private ArrayList<String> DisableParkingSpotInputs = new ArrayList<>();
 	
 	/**

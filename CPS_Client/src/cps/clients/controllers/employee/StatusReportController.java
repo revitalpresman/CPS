@@ -25,12 +25,9 @@ import javafx.stage.DirectoryChooser;
  */
 public class StatusReportController extends EmployeeBaseController
 {
-    
-    /** The directory. */
     @FXML
     private TextField directory;
     
-    /** The prg bar. */
     @FXML
     private ProgressBar prgBar;
     

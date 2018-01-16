@@ -32,23 +32,17 @@ import javafx.scene.control.ProgressBar;
 public class ManageComplaintsController extends EmployeeBaseController
 {
     
-    /** The my complaints. */
     ArrayList<Complaint> myComplaints;
     
-    /** The my buttons. */
     ArrayList<String> myButtons = new ArrayList<String>();
     
-    /** The Compensate. */
     private ArrayList<String> Compensate = new ArrayList<>();
     
-    /** The current complaint id. */
     private String currentComplaintId = null;
     
-    /** The complaints list. */
     @FXML
     private ListView<String> complaintsList;
     
-    /** The prg bar. */
     @FXML
     private ProgressBar prgBar;
     

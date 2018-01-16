@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
  */
 public class CustomerServiceEnteryController  extends EmployeeBaseController{
 
-	/** The Headline. */
 	@FXML
     private Label Headline;
 	

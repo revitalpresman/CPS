@@ -25,17 +25,13 @@ import javafx.scene.control.ListView;
 public class ManageRequestRateChangeController extends EmployeeBaseController
 {
     
-    /** The my buttons. */
     ArrayList<String> myButtons = new ArrayList<String>();
     
-    /** The my requests. */
     ArrayList<ChangeRatesRequest> myRequests;
     
-    /** The Requests list. */
     @FXML
     private ListView<String> RequestsList;
     
-    /** The current request id. */
     private String currentRequestId = null;
     
     /**

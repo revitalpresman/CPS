@@ -29,13 +29,10 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class ManagerLoginController extends EmployeeBaseController{
 	
-	/** The Disable parking spot inputs. */
 	private ArrayList<String> DisableParkingSpotInputs = new ArrayList<>();
 	
-	/** The Request update prices inputs. */
 	private ArrayList<String> RequestUpdatePricesInputs = new ArrayList<>();
 	
-	/** The Initialize parking spot inputs. */
 	private ArrayList<String> InitializeParkingSpotInputs = new ArrayList<>();
 	
 	/**
